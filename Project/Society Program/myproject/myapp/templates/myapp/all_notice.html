@@ -1,0 +1,63 @@
+{% extends  'myapp/index.html' %}
+{% load static %}
+
+{% block content %}
+<section class="content home">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2> All NOTICE <small class="text-muted">Welcome to Digital Society </small></h2>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="{% url 'allnotice' %}"><i class="zmdi zmdi-home"></i> Digital Society </a></li>
+                        <li class="breadcrumb-item">Notice</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br><br>
+
+        
+        <div class="container-fluid">
+            <div class="blog-page">
+            <form action="{% url 'allnotice' %}" method="POST" enctype="multipart/form-data">
+
+                {% for i in nid %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="card single_post">
+                            <div class="body">
+                                <h3 class="m-t-0 m-b-5"><a href="blog-details.html">{{i.notice_title}}</a></h3>
+                                <ul class="meta">
+                                    <li><a href="#"><i class="zmdi zmdi-account col-blue"></i>Posted By:{{i.user_id.role}}</a>
+                                    </li>
+                                    <li><a href="#"><i class="zmdi zmdi-alarm col-purple"></i>{{i.whenpublished}}</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-eye col-blue"></i>View:0</a></li>
+                                </ul>
+                            </div>
+                                <div class="body">
+                                    <div class="img-post m-b-15">
+                                        <img src="{{uid.img.url}}" alt="">
+                                        <div class="social_share">                            
+                                            <button class="btn btn-primary btn-icon btn-icon-mini btn-round"><i class="zmdi zmdi-facebook"></i></button>
+                                            <button class="btn btn-primary btn-icon btn-icon-mini btn-round"><i class="zmdi zmdi-twitter"></i></button>
+                                            <button class="btn btn-primary btn-icon btn-icon-mini btn-round"><i class="zmdi zmdi-instagram"></i></button>
+                                        </div>
+                                    </div>
+                                
+                                <p> {{i.notice_content}} </p>
+                                <a href="{% url 'allnotice' %}" title="read more" class="btn btn-round btn-info">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+                {% endfor %}
+            </div>       
+        </div>
+                
+</section>
+{% endblock %}
